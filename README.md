@@ -5,7 +5,7 @@ An end-to-end data engineering project that uses the X (Twitter) API to ingest p
 
 
 ---
-## 🏗️ Architecture Architecture
+## 🏗️ Architecture Overview
 
 An AWS EC2 instance running Ubuntu is used as the primary compute environment. The instance is accessed securely via SSH from a local terminal and configured with all required system dependencies, Python packages, and a Python virtual environment.
 
