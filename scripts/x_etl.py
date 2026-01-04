@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 
 def run_x_etl():
 
-    BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAC8G6wEAAAAAQe3m315xvCbqH6cqrYF9C35ytd4%3DTsBTsuIdgTMMnVFvV3O0llFsjqm5MJtquRViMH0mXV0F75ppcP"
+    BEARER_TOKEN = ""
 
     if not BEARER_TOKEN or "PASTE_" in BEARER_TOKEN:
         raise RuntimeError("Bearer Token is missing or not set")
