@@ -7,15 +7,15 @@ An end-to-end data engineering project that uses the X (Twitter) API to ingest p
 ---
 ## 🏗️ Architecture Overview
 
-An AWS EC2 instance running Ubuntu is used as the primary compute environment. The instance is accessed securely via SSH from a local terminal and configured with all required system dependencies, Python packages, and a Python virtual environment.
+An AWS EC2 instance running Ubuntu serves as the primary compute environment for this project. The instance is accessed securely via SSH from a local terminal and is provisioned with all required system dependencies, Python packages, and an isolated Python virtual environment to ensure reproducibility and dependency management.
 
-Data ingestion is performed using the X (Twitter) API. A Python script (x_etl.py) connects to the API and retrieves public tweet data from the account Elon Musk. The extracted data is written directly to a CSV file, representing raw ingested data without transformation.
+Data ingestion is performed using the X (Twitter) API, accessed through the Tweepy Python library. A custom ingestion script (x_etl.py) authenticates with the API and retrieves public tweet data from the Elon Musk account. At this stage, the extracted data is written directly to a CSV file in its raw form. This CSV output is intentionally untransformed and exists only to validate successful data extraction from the X API, serving as a testing and verification step rather than a production transformation layer.
 
-Apache Airflow is installed and configured on the EC2 instance to orchestrate the workflow. The EC2 instance is assigned appropriate IAM roles, allowing secure interaction with AWS services—specifically Amazon S3—without embedding credentials in code.
+Apache Airflow is installed and configured on the EC2 instance to orchestrate the ingestion workflow. The EC2 instance is associated with an IAM role that grants secure, least-privilege access to AWS services specifically Amazon S3 eliminating the need to hardcode credentials within the application.
 
-The ingestion script (x_etl.py) and the Airflow DAG definition (x_dag.py) are copied to the EC2 instance so they can be recognized and executed by Airflow. Once the DAG is triggered through the Airflow UI, it executes the ingestion process and uploads the resulting CSV file to an S3 bucket.
+Both the ingestion script (x_etl.py) and the Airflow DAG definition (x_dag.py) are deployed to the EC2 instance so they can be discovered and executed by Airflow. When the DAG is triggered via the Airflow UI, it invokes the ingestion script, generates the raw CSV file, and uploads the output to an S3 bucket using the s3fs library for seamless interaction with S3 as a filesystem.
 
-This architecture establishes a complete pipeline from external API ingestion to cloud-based object storage using industry-standard tools.
+This architecture demonstrates a complete, end-to-end data engineering pipeline from external API ingestion to cloud-based object storage implemented using industry-standard tools and following best practices around orchestration, security, and cloud-native design
 
 ---
 ## 📖 Data Flow
