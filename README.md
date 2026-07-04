@@ -33,6 +33,23 @@ This project involves:
 
 ---
 
+## Optional Xquik Export Replay
+
+Set `XQUIK_EXPORT_PATH` to replay a local Xquik JSON, JSONL, or CSV export
+through the same Airflow task without calling the live API source. Leave it
+unset to keep using the Tweepy extraction flow.
+
+Optional runtime settings:
+
+```bash
+export X_BEARER_TOKEN="your_bearer_token"
+export X_USERNAME="elonmusk"
+export X_OUTPUT_PATH="s3://your-bucket/elonmusk_tweets.csv"
+export XQUIK_EXPORT_PATH="/path/to/xquik-export.json"
+```
+
+---
+
 ## 🚀 Tech Stack
 
 1. Programming Language: Python
